@@ -20,7 +20,7 @@ class CreateAuthorsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('author_name', 50);
-            $table->string('activity_description', 50);
+            $table->longText('activity_description');
             $table->timestamps();
         });
     }
