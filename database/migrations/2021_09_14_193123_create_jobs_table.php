@@ -22,7 +22,7 @@ class CreateJobsTable extends Migration
             $table->string('title', 50);
             $table->text('description');
             $table->dateTimeTz('start_activity_date');
-            $table->float('duration_activity', 3, 2);
+            $table->float('duration_activity', 5, 2);
             $table->decimal('price', 9, 2);
 
 
