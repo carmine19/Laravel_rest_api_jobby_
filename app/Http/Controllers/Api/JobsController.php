@@ -14,10 +14,19 @@ class JobsController extends Controller
 
         $jobs = Job::paginate(5);
 
+         $response = [
+           'pagination' => [
+               'total' => $jobs->total(),
+               'per_page' => $jobs->perPage(),
+               'current_page' => $jobs->currentPage(),
+               'last_page' => $jobs->lastPage(),
+               'from' => $jobs->firstItem(),
+               'to' => $jobs->lastItem()
+           ],
+           'jobs' => $jobs
+       ];
 
-        return response()->json([
-            'success'=> true,
-            'jobs' => $jobs
-        ]);
+
+        return response()->json($response);
     }
 }

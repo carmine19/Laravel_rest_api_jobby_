@@ -21696,7 +21696,8 @@ __webpack_require__.r(__webpack_exports__);
   name: "JobList",
   data: function data() {
     return {
-      jobList: {}
+      jobList: [],
+      pagination: []
     };
   },
   methods: {
@@ -21705,13 +21706,21 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/jobs').then(function (response) {
         console.log(response.data.jobs);
-        _this.jobList = response.data.jobs.data;
+        _this.jobList = response.data.jobs;
+      });
+    },
+    getPagination: function getPagination() {
+      var _this2 = this;
+
+      axios.get('/api/jobs').then(function (response) {
+        console.log(response.data.pagination);
+        _this2.pagination = response.data.pagination;
       });
     }
   },
   created: function created() {
     this.getJob();
-    console.log(this.jobList);
+    this.getPagination();
   }
 });
 
@@ -25642,10 +25651,12 @@ var _hoisted_24 = {
   "class": "text-indigo-600 hover:text-indigo-900"
 };
 
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"px-5 bg-white py-5 flex flex-col xs:flex-row items-center xs:justify-between\"><div class=\"flex items-center\"><button type=\"button\" class=\"w-full p-4 border text-base rounded-l-xl text-gray-600 bg-white hover:bg-gray-100\"><svg width=\"9\" fill=\"currentColor\" height=\"8\" class=\"\" viewBox=\"0 0 1792 1792\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1427 301l-531 531 531 531q19 19 19 45t-19 45l-166 166q-19 19-45 19t-45-19l-742-742q-19-19-19-45t19-45l742-742q19-19 45-19t45 19l166 166q19 19 19 45t-19 45z\"></path></svg></button><button type=\"button\" class=\"w-full px-4 py-2 border-t border-b text-base text-indigo-500 bg-white hover:bg-gray-100\"> 1 </button><button type=\"button\" class=\"w-full px-4 py-2 border text-base text-gray-600 bg-white hover:bg-gray-100\"> 2 </button><button type=\"button\" class=\"w-full px-4 py-2 border-t border-b text-base text-gray-600 bg-white hover:bg-gray-100\"> 3 </button><button type=\"button\" class=\"w-full px-4 py-2 border text-base text-gray-600 bg-white hover:bg-gray-100\"> 4 </button><button type=\"button\" class=\"w-full p-4 border-t border-b border-r text-base rounded-r-xl text-gray-600 bg-white hover:bg-gray-100\"><svg width=\"9\" fill=\"currentColor\" height=\"8\" class=\"\" viewBox=\"0 0 1792 1792\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z\"></path></svg></button></div></div>", 1);
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"px-5 bg-white py-5 flex flex-col xs:flex-row items-center xs:justify-between\"><div class=\"flex items-center\"><button type=\"button\" class=\"w-full p-4 border text-base rounded-l-xl text-gray-600 bg-white hover:bg-gray-100\"><svg width=\"9\" fill=\"currentColor\" height=\"8\" class=\"\" viewBox=\"0 0 1792 1792\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1427 301l-531 531 531 531q19 19 19 45t-19 45l-166 166q-19 19-45 19t-45-19l-742-742q-19-19-19-45t19-45l742-742q19-19 45-19t45 19l166 166q19 19 19 45t-19 45z\"></path></svg></button><button type=\"button\" class=\"w-full px-4 py-2 border-t border-b text-base text-indigo-500 bg-white hover:bg-gray-100\"> 1 </button><button type=\"button\" class=\"w-full p-4 border-t border-b border-r text-base rounded-r-xl text-gray-600 bg-white hover:bg-gray-100\"><svg width=\"9\" fill=\"currentColor\" height=\"8\" class=\"\" viewBox=\"0 0 1792 1792\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z\"></path></svg></button></div></div>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.jobList, function (job) {
+  var _component_pagination = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("pagination");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.jobList.data, function (job) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: job.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(job.title), 1
@@ -25663,7 +25674,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])]), _hoisted_25])])])])]);
+  ))]), $data.pagination.last_page > 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_pagination, {
+    key: 0,
+    pagination: $data.pagination,
+    offset: 5,
+    onPaginate: _cache[0] || (_cache[0] = function ($event) {
+      return _ctx.fetchJobs();
+    })
+  }, null, 8
+  /* PROPS */
+  , ["pagination"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_25])])])])]);
 }
 
 /***/ }),
