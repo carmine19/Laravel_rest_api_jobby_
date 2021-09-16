@@ -1,8 +1,12 @@
 <template>
 <div>
-    joblist
 
-     <div class="container mx-auto px-2 sm:px-10 max-w-3xl">
+
+     <div class="container mx-auto px-2 sm:px-10 max-w-3xl mt-10">
+
+         <div class="box-title">
+             <h1 class="text-center text-indigo-500">joblist</h1>
+         </div>
             <div class="py-8">
                 <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                     <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -16,7 +20,7 @@
                                     descrizione
                                 </th>
                                 <th scope="col" class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
-                                    data di inizio attività
+                                    inizio attività
                                 </th>
                                 <th scope="col" class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
                                     durata
@@ -49,7 +53,7 @@
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ job.description }}
+                                        {{  job.description.substring(0, 25) + '...' }}
                                     </p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -62,13 +66,13 @@
                                     <span aria-hidden="true" class="absolute inset-0 bg-green-200 opacity-50 rounded-full">
                                     </span>
                                     <span class="relative">
-                                        {{ job.duration_activity }}
+                                        {{ job.duration_activity  }} <span>{{ job.duration_activity < 1 ? 'm' : 'h' }}</span>
                                     </span>
                                 </span>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     <a href="#" class="text-indigo-600 hover:text-indigo-900">
-                                        {{ job.price }}
+                                        {{ job.price  }} <span>€</span>
                                     </a>
                                 </td>
 
@@ -79,30 +83,23 @@
                                 </td>
                             </tr>
                             </tbody>
-                            
 
-                            <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="fetchJobs()"></pagination>
+
 
                         </table>
                         <div class="px-5 bg-white py-5 flex flex-col xs:flex-row items-center xs:justify-between">
                             <div class="flex items-center">
                                 <button type="button" class="w-full p-4 border text-base rounded-l-xl text-gray-600 bg-white hover:bg-gray-100">
-                                    <svg width="9" fill="currentColor" height="8" class="" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1427 301l-531 531 531 531q19 19 19 45t-19 45l-166 166q-19 19-45 19t-45-19l-742-742q-19-19-19-45t19-45l742-742q19-19 45-19t45 19l166 166q19 19 19 45t-19 45z">
-                                        </path>
-                                    </svg>
+                                    &lt;
                                 </button>
 
                                 <button type="button" class="w-full px-4 py-2 border-t border-b text-base text-indigo-500 bg-white hover:bg-gray-100 ">
-                                    1
+                                    {{pagination.current_page}}
                                 </button>
 
-                                <button type="button" class="w-full p-4 border-t border-b border-r text-base  rounded-r-xl text-gray-600 bg-white hover:bg-gray-100">
-                                    <svg width="9" fill="currentColor" height="8" class="" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z">
-                                        </path>
-                                    </svg>
-                                </button>
+                                <a href="" type="button" class="w-full p-4 border-t border-b border-r text-base  rounded-r-xl text-gray-600 bg-white hover:bg-gray-100">
+                                    >
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -115,12 +112,13 @@
 </template>
 
 <script>
+
 export default {
     name: "JobList",
 
     data() {
             return {
-              jobList: [], pagination: [],
+              jobList: [], pagination: [], next:''
             }
         },
         methods: {
@@ -138,16 +136,33 @@ export default {
                          console.log(response.data.pagination)
                          this.pagination = response.data.pagination
                      })
-            }
+            },
+
+            getNext() {
+                axios.get('/api/jobs')
+                     .then((response)=>{
+                         console.log(response.data.jobs.next_page_url)
+                         this.next = response.data.jobs.next_page_url
+
+                     })
+            },
+
         },
         created() {
             this.getJob()
             this.getPagination()
+            this.getNext()
+
 
         }
 }
 </script>
 
 <style scoped>
+
+.container .box-title h1 {
+    text-transform: uppercase;
+    font-size: 35px;
+}
 
 </style>
