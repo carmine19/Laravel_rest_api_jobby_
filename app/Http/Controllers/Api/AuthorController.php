@@ -16,4 +16,6 @@ class AuthorController extends Controller
 
         return response()->json($data);
     }
+
+
 }

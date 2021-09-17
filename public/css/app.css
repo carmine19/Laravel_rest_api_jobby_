@@ -2304,6 +2304,11 @@ select {
 		padding-right: 2rem;
 	}
 
+	.sm\:px-12 {
+		padding-left: 3rem;
+		padding-right: 3rem;
+	}
+
 	.sm\:pt-0 {
 		padding-top: 0px;
 	}

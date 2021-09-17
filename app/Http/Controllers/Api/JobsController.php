@@ -4,29 +4,30 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Job;
+use App\Models\Author;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\DocBlock\Tags\Author;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class JobsController extends Controller
 {
     public function index() {
 
-        $jobs = Job::paginate(5);
+      $jobs = DB::table('authors')
+            ->leftJoin('jobs', 'authors.id', '=', 'jobs.author_id')
+            ->paginate(5);
 
          $response = [
-           'pagination' => [
-               'total' => $jobs->total(),
-               'per_page' => $jobs->perPage(),
-               'current_page' => $jobs->currentPage(),
-               'last_page' => $jobs->lastPage(),
-               'from' => $jobs->firstItem(),
-               'to' => $jobs->lastItem()
-           ],
-           'jobs' => $jobs
-       ];
+             'jobs' => $jobs,
+         ];
 
+         /*return Inertia::render('JobList', [
+            'jobList' => $response
+        ]);*/
 
         return response()->json($response);
     }
+
+
 }

@@ -2,7 +2,7 @@
 <div>
 
 
-     <div class="container mx-auto px-2 sm:px-10 max-w-3xl mt-10">
+     <div class="container box-job-list mx-auto px-2">
 
          <div class="box-title">
              <h1 class="text-center text-indigo-500">joblist</h1>
@@ -34,8 +34,6 @@
                             </tr>
                             </thead>
                             <tbody>
-
-
                             <tr v-for="job in jobList.data" :key="job.id">
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     <div class="flex items-center">
@@ -75,33 +73,29 @@
                                         {{ job.price  }} <span>€</span>
                                     </a>
                                 </td>
-
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">
-                                        {{ job.author_id }}
+                                    <a href="" class="text-indigo-600 hover:text-indigo-900">
+                                        {{ job.author_name }}
                                     </a>
                                 </td>
                             </tr>
                             </tbody>
-
-
-
                         </table>
-                        <div class="px-5 bg-white py-5 flex flex-col xs:flex-row items-center xs:justify-between">
+                        <!--   <div class="px-5 bg-white py-5 flex flex-col xs:flex-row items-center xs:justify-between">
                             <div class="flex items-center">
                                 <button type="button" class="w-full p-4 border text-base rounded-l-xl text-gray-600 bg-white hover:bg-gray-100">
                                     &lt;
                                 </button>
 
                                 <button type="button" class="w-full px-4 py-2 border-t border-b text-base text-indigo-500 bg-white hover:bg-gray-100 ">
-                                    {{pagination.current_page}}
+
                                 </button>
 
                                 <a href="" type="button" class="w-full p-4 border-t border-b border-r text-base  rounded-r-xl text-gray-600 bg-white hover:bg-gray-100">
                                     >
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -118,7 +112,7 @@ export default {
 
     data() {
             return {
-              jobList: [], pagination: [], next:''
+              jobList: [], next:''
             }
         },
         methods: {
@@ -127,14 +121,6 @@ export default {
                      .then((response)=>{
                          console.log(response.data.jobs)
                          this.jobList = response.data.jobs
-                     })
-            },
-
-            getPagination(){
-                axios.get('/api/jobs')
-                     .then((response)=>{
-                         console.log(response.data.pagination)
-                         this.pagination = response.data.pagination
                      })
             },
 
@@ -150,7 +136,6 @@ export default {
         },
         created() {
             this.getJob()
-            this.getPagination()
             this.getNext()
 
 
@@ -160,9 +145,13 @@ export default {
 
 <style scoped>
 
-.container .box-title h1 {
+.box-job-list .box-title h1 {
     text-transform: uppercase;
     font-size: 35px;
+}
+
+.box-job-list .text-green-900 {
+    font-size: 10px;
 }
 
 </style>

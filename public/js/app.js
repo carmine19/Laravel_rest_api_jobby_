@@ -21667,7 +21667,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "AuthorDetails"
+  name: "AuthorDetails",
+  data: function data() {
+    return {};
+  },
+  methods: {},
+  created: function created() {}
 });
 
 /***/ }),
@@ -21714,7 +21719,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       jobList: [],
-      pagination: [],
       next: ''
     };
   },
@@ -21727,26 +21731,17 @@ __webpack_require__.r(__webpack_exports__);
         _this.jobList = response.data.jobs;
       });
     },
-    getPagination: function getPagination() {
+    getNext: function getNext() {
       var _this2 = this;
 
       axios.get('/api/jobs').then(function (response) {
-        console.log(response.data.pagination);
-        _this2.pagination = response.data.pagination;
-      });
-    },
-    getNext: function getNext() {
-      var _this3 = this;
-
-      axios.get('/api/jobs').then(function (response) {
         console.log(response.data.jobs.next_page_url);
-        _this3.next = response.data.jobs.next_page_url;
+        _this2.next = response.data.jobs.next_page_url;
       });
     }
   },
   created: function created() {
     this.getJob();
-    this.getPagination();
     this.getNext();
   }
 });
@@ -25521,7 +25516,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, " dettaglio autore ");
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div");
 }
 
 /***/ }),
@@ -25594,7 +25589,7 @@ __webpack_require__.r(__webpack_exports__);
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-df73063c");
 
 var _hoisted_1 = {
-  "class": "container mx-auto px-2 sm:px-10 max-w-3xl mt-10"
+  "class": "container box-job-list mx-auto px-2"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -25707,35 +25702,9 @@ var _hoisted_24 = {
   "class": "px-5 py-5 border-b border-gray-200 bg-white text-sm"
 };
 var _hoisted_25 = {
-  href: "#",
+  href: "",
   "class": "text-indigo-600 hover:text-indigo-900"
 };
-var _hoisted_26 = {
-  "class": "px-5 bg-white py-5 flex flex-col xs:flex-row items-center xs:justify-between"
-};
-var _hoisted_27 = {
-  "class": "flex items-center"
-};
-
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  type: "button",
-  "class": "w-full p-4 border text-base rounded-l-xl text-gray-600 bg-white hover:bg-gray-100"
-}, " < ", -1
-/* HOISTED */
-);
-
-var _hoisted_29 = {
-  type: "button",
-  "class": "w-full px-4 py-2 border-t border-b text-base text-indigo-500 bg-white hover:bg-gray-100"
-};
-
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "",
-  type: "button",
-  "class": "w-full p-4 border-t border-b border-r text-base rounded-r-xl text-gray-600 bg-white hover:bg-gray-100"
-}, " > ", -1
-/* HOISTED */
-);
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -25755,14 +25724,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(job.price) + " ", 1
     /* TEXT */
-    ), _hoisted_23])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(job.author_id), 1
+    ), _hoisted_23])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(job.author_name), 1
     /* TEXT */
     )])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.pagination.current_page), 1
-  /* TEXT */
-  ), _hoisted_30])])])])])])]);
+  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("   <div class=\"px-5 bg-white py-5 flex flex-col xs:flex-row items-center xs:justify-between\">\n                            <div class=\"flex items-center\">\n                                <button type=\"button\" class=\"w-full p-4 border text-base rounded-l-xl text-gray-600 bg-white hover:bg-gray-100\">\n                                    &lt;\n                                </button>\n\n                                <button type=\"button\" class=\"w-full px-4 py-2 border-t border-b text-base text-indigo-500 bg-white hover:bg-gray-100 \">\n\n                                </button>\n\n                                <a href=\"\" type=\"button\" class=\"w-full p-4 border-t border-b border-r text-base  rounded-r-xl text-gray-600 bg-white hover:bg-gray-100\">\n                                    >\n                                </a>\n                            </div>\n                        </div> ")])])])])]);
 }
 
 /***/ }),
@@ -27172,7 +27139,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.container .box-title h1[data-v-df73063c] {\n    text-transform: uppercase;\n    font-size: 35px;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.box-job-list .box-title h1[data-v-df73063c] {\n    text-transform: uppercase;\n    font-size: 35px;\n}\n.box-job-list .text-green-900[data-v-df73063c] {\n    font-size: 10px;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
