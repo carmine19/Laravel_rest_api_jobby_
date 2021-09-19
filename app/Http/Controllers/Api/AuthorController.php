@@ -4,18 +4,36 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Author;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class AuthorController extends Controller
 {
 
-    public function index() {
+    public function index()
+    {
 
-        $data = Author::all();
+        $authors = DB::table('authors')->paginate(5);
 
-        return response()->json($data);
+        if ($authors) {
+            return response()->json($authors);
+        } else {
+            abort('404');
+        }
+
     }
 
 
+    public function show($id)
+    {
+
+        $author = Author::where('id', $id)->first();
+
+        if ($author) {
+            return response()->json($author);
+        } else {
+            abort('404');
+        }
+
+    }
 }

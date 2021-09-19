@@ -1,10 +1,11 @@
 <?php
 
 
+use App\Http\Controllers\Api\AuthorController;
 use App\Http\Controllers\Api\JobsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\AuthorController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,4 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('author', [AuthorController::class, 'index']);
+Route::get('author/{id}', [AuthorController::class, 'show']);
 Route::get('jobs', [JobsController::class, 'index']);
+Route::get('job/{id}', [JobsController::class, 'show']);
+
