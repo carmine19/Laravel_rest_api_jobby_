@@ -1,7 +1,8 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-![Laravel_rest_api](https://user-images.githubusercontent.com/45883138/134007331-9a482ce8-a76c-437b-aa8b-4082799114ea.jpg)
 
+
+![Laravel_rest_api](https://user-images.githubusercontent.com/45883138/134007961-678d54c7-37f0-4eb6-a712-73e4a1b78bf9.jpg)
 
 
 
