@@ -31,7 +31,7 @@ class JobsController extends Controller
         if ($job) {
             return response()->json($job);
         } else {
-            abort(404);
+            abort('404');
         };
 
     }

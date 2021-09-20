@@ -19,7 +19,7 @@ class JobsTableSeeder extends Seeder
         $authors = Author::all();
 
          foreach ($authors as $author) {
-             for ($i=0; $i < 10; $i++) {
+             for ($i=0; $i < 3; $i++) {
                  $new_job = new Job();
                  $new_job->title = $faker->firstName();
                  $new_job->author_id = $author->id;
@@ -35,20 +35,3 @@ class JobsTableSeeder extends Seeder
     }
 }
 
-
-
-/*
- *
- * $table->id();
-
-            $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
-
-            $table->string('title', 50);
-            $table->text('description');
-            $table->dateTimeTz('start_activity_date');
-            $table->float('duration_activity', 3, 2);
-            $table->decimal('price', 9, 2);
-
-
-            $table->timestamps();
- */
